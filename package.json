@@ -1,0 +1,28 @@
+{
+  "name": "gamerater",
+  "version": "1.0.0",
+  "description": "A website for video game enthusiasts who want suggestions on new video games based on their personal ratings of games they've played.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafbatista/gamerater.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafbatista/gamerater/issues"
+  },
+  "homepage": "https://github.com/rafbatista/gamerater#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "igdb-api-node": "^3.0.2",
+    "mongodb": "^2.2.31"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
