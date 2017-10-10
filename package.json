@@ -4,6 +4,8 @@
   "description": "A website for video game enthusiasts who want suggestions on new video games based on their personal ratings of games they've played.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "watch": "node nodemon.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/rafbatista/gamerater#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "igdb-api-node": "^3.0.2",
     "mongodb": "^2.2.31"
