@@ -10,90 +10,90 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
   games
     .deleteMany({})
     .then(() => games.insertMany([
-        {
-          name: 'The Witcher 3: Wild Hunt',
-          genre: 'Action',
-          rating: 5,
-          esrb: 'Mature',
-          developer: 'CD Projekt RED',
-          publisher: 'CD Projekt',
-          release_date: '19 May 2015',
-          mode: 'Single-player',
-          synopsis: 'The Witcher 3: Wild Hunt is a 2015 action role-playing video ' +
-          'game developed by CD Projekt RED and published by CD Projekt. Based on ' +
-          'The Witcher series of fantasy novels by Polish author Andrzej Sapkowski, ' +
-          'it is the sequel to the 2011 video game The Witcher 2: Assassins of Kings ' +
-          'and the third installment in The Witcher video game series. Played in an ' +
-          'open world with a third-person perspective, players control protagonist ' +
-          'Geralt of Rivia, a monster hunter known as a Witcher, who seeks to find ' +
-          'his missing adopted daughter on the run from the Wild Hunt, an otherworldly ' +
-          'force determined to capture and use her powers. Throughout the game, ' +
-          'players battle against the world\'s many dangers using weapons and magic, ' +
-          'interact with various non-player characters, and complete main story quests ' +
-          'and side quests to acquire experience points and gold used to increase ' +
-          'Geralt\'s various abilities and gear. The game\'s central story features ' +
-          'multiple endings that are determined by Geralt\'s choices made by the ' +
-          'player during certain points of the story.'
-        },
-        {
-          name: 'Cuphead',
-          genre: 'Action',
-          rating: 4,
-          esrb: 'Rating Pending',
-          developer: 'Studio MDHR Entertainment',
-          publisher: 'StudioMDHR Entertainment',
-          release_date: '19 September 2017',
-          mode: 'Single-player, Multiplayer',
-          synopsis: 'Cuphead is a run and gun indie video game developed and published ' +
-          'by StudioMDHR Entertainment. As the titular character Cuphead, the player ' +
-          'fights a series of bosses in order to repay a debt to the devil. The game ' +
-          'was heavily inspired by the works of 1930s cartoonists such as Max Fleischer\'s ' +
-          'Fleischer Studios, and sought to keep the works\' subversive and surrealist ' +
-          'qualities.'
-        },
-        {
-          name: 'Middle-earth: Shadow of Mordor',
-          genre: 'Action',
-          rating: 5,
-          esrb: 'Mature',
-          developer: 'Studio MDHR Entertainment',
-          publisher: 'Warner Bros. Interactive Entertainment',
-          release_date: '30 September 2014',
-          mode: 'Single-player',
-          synopsis: 'Middle-earth: Shadow of Mordor is an open world Action-adventure ' +
-          'video game developed by Monolith Productions and published by Warner Bros. ' +
-          'Interactive Entertainment. An original story set in the legendarium created ' +
-          'by J. R. R. Tolkien, the game takes place between the events of The ' +
-          'Hobbit and The Lord of the Rings. The player controls Talion, a Ranger ' +
-          'who bonds with the wraith of the Elf Lord Celebrimbor, as the two set ' +
-          'out to avenge the deaths of their loved ones. Players can engage in melee ' +
-          'combat, and utilize wraith abilities to fight and manipulate enemies. ' +
-          'The game introduces the Nemesis System, which allows the artificial ' +
-          'intelligence of non-playable characters to remember the deaths of the ' +
-          'game\'s protagonist and react accordingly.'
-        },
-        {
-          name: 'Ryse: Son of Rome',
-          genre: 'Action',
-          rating: 5,
-          esrb: 'Mature',
-          developer: 'Cyrtek',
-          publisher: 'Microsoft Studios',
-          release_date: '30 September 2014',
-          mode: 'Single-player, multiplayer',
-          synopsis: 'Ryse: Son of Rome is a third-person action-adventure hack and ' +
-          'slash video game developed by Crytek and published by Microsoft Studios. ' +
-          'Set in an alternate version of Ancient Rome, Ryse follows the life of ' +
-          'the Roman centurion Marius Titus as he becomes one of the leaders in the ' +
-          'Roman Legion. Gameplay revolves around Marius using his sword to strike ' +
-          'enemies and shield to deflect attacks. Execution sequences are featured ' +
-          'in the game, which are quick-time events that serve as an extension to ' +
-          'combat. Th e game\'s combat emphasizes on \'flow\', a term referring to a ' +
-          'player\'s ability to move on to fight against another enemy upon defeating ' +
-          'an enemy with few limitations in between. The game features a cooperative ' +
-          'multiplayer mode, which tasks players to fight against waves of enemies ' +
-          'in maps that are changing dynamically. '
-        },
+      {
+        name: 'The Witcher 3: Wild Hunt',
+        genre: 'Action',
+        rating: 5,
+        esrb: 'Mature',
+        developer: 'CD Projekt RED',
+        publisher: 'CD Projekt',
+        release_date: '19 May 2015',
+        mode: 'Single-player',
+        synopsis: 'The Witcher 3: Wild Hunt is a 2015 action role-playing video ' +
+        'game developed by CD Projekt RED and published by CD Projekt. Based on ' +
+        'The Witcher series of fantasy novels by Polish author Andrzej Sapkowski, ' +
+        'it is the sequel to the 2011 video game The Witcher 2: Assassins of Kings ' +
+        'and the third installment in The Witcher video game series. Played in an ' +
+        'open world with a third-person perspective, players control protagonist ' +
+        'Geralt of Rivia, a monster hunter known as a Witcher, who seeks to find ' +
+        'his missing adopted daughter on the run from the Wild Hunt, an otherworldly ' +
+        'force determined to capture and use her powers. Throughout the game, ' +
+        'players battle against the world\'s many dangers using weapons and magic, ' +
+        'interact with various non-player characters, and complete main story quests ' +
+        'and side quests to acquire experience points and gold used to increase ' +
+        'Geralt\'s various abilities and gear. The game\'s central story features ' +
+        'multiple endings that are determined by Geralt\'s choices made by the ' +
+        'player during certain points of the story.'
+      },
+      {
+        name: 'Cuphead',
+        genre: 'Action',
+        rating: 4,
+        esrb: 'Rating Pending',
+        developer: 'Studio MDHR Entertainment',
+        publisher: 'StudioMDHR Entertainment',
+        release_date: '19 September 2017',
+        mode: 'Single-player, Multiplayer',
+        synopsis: 'Cuphead is a run and gun indie video game developed and published ' +
+        'by StudioMDHR Entertainment. As the titular character Cuphead, the player ' +
+        'fights a series of bosses in order to repay a debt to the devil. The game ' +
+        'was heavily inspired by the works of 1930s cartoonists such as Max Fleischer\'s ' +
+        'Fleischer Studios, and sought to keep the works\' subversive and surrealist ' +
+        'qualities.'
+      },
+      {
+        name: 'Middle-earth: Shadow of Mordor',
+        genre: 'Action',
+        rating: 5,
+        esrb: 'Mature',
+        developer: 'Studio MDHR Entertainment',
+        publisher: 'Warner Bros. Interactive Entertainment',
+        release_date: '30 September 2014',
+        mode: 'Single-player',
+        synopsis: 'Middle-earth: Shadow of Mordor is an open world Action-adventure ' +
+        'video game developed by Monolith Productions and published by Warner Bros. ' +
+        'Interactive Entertainment. An original story set in the legendarium created ' +
+        'by J. R. R. Tolkien, the game takes place between the events of The ' +
+        'Hobbit and The Lord of the Rings. The player controls Talion, a Ranger ' +
+        'who bonds with the wraith of the Elf Lord Celebrimbor, as the two set ' +
+        'out to avenge the deaths of their loved ones. Players can engage in melee ' +
+        'combat, and utilize wraith abilities to fight and manipulate enemies. ' +
+        'The game introduces the Nemesis System, which allows the artificial ' +
+        'intelligence of non-playable characters to remember the deaths of the ' +
+        'game\'s protagonist and react accordingly.'
+      },
+      {
+        name: 'Ryse: Son of Rome',
+        genre: 'Action',
+        rating: 5,
+        esrb: 'Mature',
+        developer: 'Cyrtek',
+        publisher: 'Microsoft Studios',
+        release_date: '30 September 2014',
+        mode: 'Single-player, multiplayer',
+        synopsis: 'Ryse: Son of Rome is a third-person action-adventure hack and ' +
+        'slash video game developed by Crytek and published by Microsoft Studios. ' +
+        'Set in an alternate version of Ancient Rome, Ryse follows the life of ' +
+        'the Roman centurion Marius Titus as he becomes one of the leaders in the ' +
+        'Roman Legion. Gameplay revolves around Marius using his sword to strike ' +
+        'enemies and shield to deflect attacks. Execution sequences are featured ' +
+        'in the game, which are quick-time events that serve as an extension to ' +
+        'combat. Th e game\'s combat emphasizes on \'flow\', a term referring to a ' +
+        'player\'s ability to move on to fight against another enemy upon defeating ' +
+        'an enemy with few limitations in between. The game features a cooperative ' +
+        'multiplayer mode, which tasks players to fight against waves of enemies ' +
+        'in maps that are changing dynamically. '
+      },
       {
         name: 'Marvel vs. Capcom: Infinite',
         genre: 'Fighting',
@@ -279,10 +279,10 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'operation to date.'
       }
     ])
-    .catch(err => {
-      console.error(err)
-      process.exit(1)
-    })
-    .then(() => console.log('Games are seeded!'))
-    .then(() => db.close())
+      .catch(err => {
+        console.error(err)
+        process.exit(1)
+      })
+      .then(() => console.log('Games are seeded!'))
+      .then(() => db.close()))
 })
