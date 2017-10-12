@@ -19,6 +19,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'CD Projekt',
         release_date: '19 May 2015',
         mode: 'Single-player',
+        imgSrc: 'images/the_witcher_3.jpg',
         synopsis: 'The Witcher 3: Wild Hunt is a 2015 action role-playing video ' +
         'game developed by CD Projekt RED and published by CD Projekt. Based on ' +
         'The Witcher series of fantasy novels by Polish author Andrzej Sapkowski, ' +
@@ -44,6 +45,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'StudioMDHR Entertainment',
         release_date: '19 September 2017',
         mode: 'Single-player, Multiplayer',
+        imgSrc: 'images/cuphead.jpg',
         synopsis: 'Cuphead is a run and gun indie video game developed and published ' +
         'by StudioMDHR Entertainment. As the titular character Cuphead, the player ' +
         'fights a series of bosses in order to repay a debt to the devil. The game ' +
@@ -60,6 +62,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Warner Bros. Interactive Entertainment',
         release_date: '30 September 2014',
         mode: 'Single-player',
+        imgSrc: 'images/middle-earth_shadow_of_mordor.jpg',
         synopsis: 'Middle-earth: Shadow of Mordor is an open world Action-adventure ' +
         'video game developed by Monolith Productions and published by Warner Bros. ' +
         'Interactive Entertainment. An original story set in the legendarium created ' +
@@ -81,6 +84,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Microsoft Studios',
         release_date: '30 September 2014',
         mode: 'Single-player, multiplayer',
+        imgSrc: 'images/ryse_son_of_rome.jpg',
         synopsis: 'Ryse: Son of Rome is a third-person action-adventure hack and ' +
         'slash video game developed by Crytek and published by Microsoft Studios. ' +
         'Set in an alternate version of Ancient Rome, Ryse follows the life of ' +
@@ -103,6 +107,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Capcom',
         release_date: '19 September 2017',
         mode: 'Single-player, multiplayer',
+        imgSrc: 'images/mvc_infinite.jpg',
         synopsis: 'Marvel vs. Capcom: Infinite is a fighting video game ' +
         'developed and published by Capcom. It is the sixth main entry in the ' +
         'Marvel vs. Capcom series of crossover games. Like previous installments, ' +
@@ -125,6 +130,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Bandai Namco Entertainment',
         release_date: '2 June 2017',
         mode: 'Single-player, multiplayer',
+        imgSrc: 'images/tekken7.jpg',
         synopsis: 'Tekken 7 is a fighting game developed and published by Bandai ' +
         'Namco Entertainment. The game is the ninth installment in the Tekken ' +
         'series, and the first to make use of the Unreal Engine. Tekken 7 had a ' +
@@ -145,6 +151,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Warner Bros. Interactive Entertainment',
         release_date: '14 April 2015',
         mode: 'Single-player, multiplayer',
+        imgSrc: 'images/mortal_kombat_x.jpg',
         synopsis: 'Mortal Kombat X is a fighting video game developed by ' +
         'NetherRealm Studios and published by Warner Bros. Interactive ' +
         'Entertainment. Running on the Unreal Engine 3, it is the tenth main ' +
@@ -168,6 +175,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Warner Bros. Interactive Entertainment',
         release_date: '16 May 2017',
         mode: 'Single-player, multiplayer',
+        imgSrc: 'images/injustice_2.jpg',
         synopsis: 'Injustice 2 is a fighting video game developed by NetherRealm ' +
         'Studios and published by Warner Bros. Interactive Entertainment. It is ' +
         'the sequel to 2013\'s Injustice: Gods Among Us. The game was released ' +
@@ -193,6 +201,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Electronic Arts',
         release_date: '21 October 2016',
         mode: 'Single-player, multiplayer',
+        imgSrc: 'images/battlefield-1.jpg',
         synopsis: 'Discover classic Battlefield gameplay with epic multiplayer ' +
         'and an adventure-filled campaign. Experience the Dawn of All-Out War, ' +
         'Only in Battlefield 1. Fight your way through epic battles going ' +
@@ -214,6 +223,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Blizzard Entertainment',
         release_date: '24 May 2016',
         mode: 'Multiplayer',
+        imgSrc: 'images/overwatch.jpg',
         synopsis: 'Overwatch assigns players into two teams of six, with each ' +
         'player selecting from a roster of 25 pre-defined characters, known ' +
         'as heroes, each with a unique style of play, whose roles are divided ' +
@@ -239,6 +249,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Activision',
         release_date: '4 November 2016',
         mode: 'Single-player, Multiplayer',
+        imgSrc: 'images/call_of_duty_infinite_warfare.jpg',
         synopsis: 'Call of Duty: Infinite Warfare delivers three unique game ' +
         'modes: Campaign, Multiplayer, and Zombies. Campaign is a return to ' +
         'the gritty, military roots of the franchise, while boldly looking ' +
@@ -263,6 +274,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Ubisoft',
         release_date: '7 March 2017',
         mode: 'Multiplayer',
+        imgSrc: 'images/tom_clancys_ghost_recond_wildlands.jpg',
         synopsis: 'Bolivia, a few years from now: this beautiful South American ' +
         'country has become the largest cocaine producer in the world. The ' +
         'influential and vicious Santa Blanca drug cartel has turned the ' +
@@ -278,11 +290,11 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'complete their mission – their grittiest and most dangerous ' +
         'operation to date.'
       }
-    ])
-      .catch(err => {
-        console.error(err)
-        process.exit(1)
-      })
-      .then(() => console.log('Games are seeded!'))
-      .then(() => db.close()))
+    ]))
+    .catch(err => {
+      console.error(err)
+      process.exit(1)
+    })
+    .then(() => console.log('Games are seeded!'))
+    .then(() => db.close())
 })
