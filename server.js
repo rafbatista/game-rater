@@ -1,7 +1,10 @@
+const path = require('path')
 const express = require('express')
 const { MongoClient } = require('mongodb')
 const app = express()
 const bodyParser = require('body-parser')
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
   if (err) {

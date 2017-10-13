@@ -274,7 +274,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         publisher: 'Ubisoft',
         release_date: '7 March 2017',
         mode: 'Multiplayer',
-        imgSrc: 'images/tom_clancys_ghost_recond_wildlands.jpg',
+        imgSrc: 'images/tom_clancys_ghost_recon_wildlands.jpg',
         synopsis: 'Bolivia, a few years from now: this beautiful South American ' +
         'country has become the largest cocaine producer in the world. The ' +
         'influential and vicious Santa Blanca drug cartel has turned the ' +
