@@ -24,5 +24,20 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         res.sendStatus(500)
       })
   })
+  app.use(bodyParser.json())
+
+  const ratedGames = db.collection('rated-games')
+
+  app.post('/games/all', (req, res) => {
+    ratedGames
+      .insertOne(req.body)
+      .then(() => {
+        res.sendStatus(201)
+      })
+      .catch(err => {
+        console.error(err)
+        res.sendStatus(500)
+      })
+  })
   app.listen(3000, () => console.log('Test at http://localhost:3000'))
 })
