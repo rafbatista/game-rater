@@ -40,12 +40,13 @@ function renderGameThumb(game) {
   $img.setAttribute('src', imgSrc)
   $img.setAttribute('alt', name)
   $img.style.width = '300px'
-  $img.style.height = '250px'
+  $img.style.height = '350px'
 
   $caption.setAttribute('class', 'game-caption')
 
   $captionHeader.textContent = name
 
+  $starContainer.setAttribute('class', 'star-container')
   $ratingStars.setAttribute('id', 'input-' + id)
   $ratingStars.setAttribute('name', 'input-' + id)
   $ratingStars.setAttribute('class', 'rating rating-loading')
@@ -86,4 +87,20 @@ function renderGameThumb(game) {
   $gameThumb.appendChild($caption)
 
   return $gameThumb
+}
+
+const postHeaders = new Headers()
+
+postHeaders.append('Content-Type', 'application/json')
+
+function postGameRating(id, rating) {
+  const postInit = {
+    method: 'POST',
+    headers: postHeaders,
+    body: JSON.stringify({
+      id: id,
+      rating: rating
+    })
+  }
+  fetch('http://localhost:3000/games/all', postInit)
 }
