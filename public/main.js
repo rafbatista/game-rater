@@ -29,8 +29,8 @@ function renderGameThumb(game) {
   const $detailTwo = document.createElement('li')
   const $detailThree = document.createElement('li')
   const $buttonContainer = document.createElement('div')
-  const $rateButton = document.createElement('a')
-  const $detailsButton = document.createElement('a')
+  const $rateButton = document.createElement('button')
+  const $detailsButton = document.createElement('button')
 
   const { id, name, genre, rating, esrb, imgSrc } = game
 
@@ -57,8 +57,13 @@ function renderGameThumb(game) {
   $ratingStars.setAttribute('data-size', 'sm')
   $starContainer.appendChild($ratingStars)
 
+  $detailOne.setAttribute('class', 'genre')
   $detailOne.textContent = 'Genre: ' + genre
+
+  $detailTwo.setAttribute('class', 'rating detail')
   $detailTwo.textContent = 'Rating: ' + rating
+
+  $detailThree.setAttribute('class', 'esrb detail')
   $detailThree.textContent = 'ESRB: ' + esrb
 
   $detailList.appendChild($detailOne)
@@ -105,9 +110,32 @@ function postGameRating(id, rating) {
 }
 
 $gamesList.addEventListener('click', (event) => {
-  var $gameThumb = event.target.closest('.thumbnail')
-  if ($gameThumb !== null) {
-    var gameThumbId = $gameThumb.getAttribute('id')
-    console.log(gameThumbId)
+  let userRating = 0
+  const $gameThumb = event.target.closest('.thumbnail')
+  const gameThumbId = $gameThumb.getAttribute('id')
+  const $ratings = $gameThumb.querySelector('.filled-stars')
+  switch ($ratings.style.width) {
+    case '0%':
+      userRating = 0
+      break
+    case '20%':
+      userRating = 1
+      break
+    case '40%':
+      userRating = 2
+      break
+    case '60%':
+      userRating = 3
+      break
+    case '80%':
+      userRating = 4
+      break
+    case '100%':
+      userRating = 5
+  }
+
+  const $rateButton = event.target.getAttribute('class')
+  if ($rateButton === 'btn btn-primary') {
+    console.log(gameThumbId + userRating)
   }
 })
