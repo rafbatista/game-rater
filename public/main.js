@@ -35,6 +35,7 @@ function renderGameThumb(game) {
   const { id, name, genre, rating, esrb, imgSrc } = game
 
   $gameThumb.setAttribute('class', 'col-md-3 thumbnail')
+  $gameThumb.setAttribute('id', id)
 
   $img.setAttribute('class', 'game-icon')
   $img.setAttribute('src', imgSrc)
@@ -65,12 +66,10 @@ function renderGameThumb(game) {
   $detailList.appendChild($detailThree)
   $detailContainer.appendChild($detailList)
 
-  $rateButton.setAttribute('href', '#')
   $rateButton.setAttribute('class', 'btn btn-primary')
   $rateButton.setAttribute('role', 'button')
   $rateButton.textContent = 'Rate'
 
-  $detailsButton.setAttribute('href', '#')
   $detailsButton.setAttribute('class', 'btn btn-default')
   $detailsButton.setAttribute('role', 'button')
   $detailsButton.textContent = 'More Details'
@@ -104,3 +103,11 @@ function postGameRating(id, rating) {
   }
   fetch('http://localhost:3000/games/all', postInit)
 }
+
+$gamesList.addEventListener('click', (event) => {
+  var $gameThumb = event.target.closest('.thumbnail')
+  if ($gameThumb !== null) {
+    var gameThumbId = $gameThumb.getAttribute('id')
+    console.log(gameThumbId)
+  }
+})
