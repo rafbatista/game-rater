@@ -112,6 +112,11 @@ function postGameRating(id, rating) {
 $gamesList.addEventListener('click', (event) => {
   let userRating = 0
   const $gameThumb = event.target.closest('.thumbnail')
+
+  if ($gameThumb.getAttribute('data-rated-status') === 'true') {
+    return
+  }
+
   const gameThumbId = $gameThumb.getAttribute('id')
   const $ratings = $gameThumb.querySelector('.filled-stars')
   switch ($ratings.style.width) {
@@ -135,7 +140,12 @@ $gamesList.addEventListener('click', (event) => {
   }
 
   const $rateButton = event.target.getAttribute('class')
-  if ($rateButton === 'btn btn-primary') {
-    console.log(gameThumbId + userRating)
+  if ($rateButton === 'btn btn-primary' && userRating === 0) {
+    window.alert('Please choose a minimum of 1-star before rating a game.')
+  }
+  else if ($rateButton === 'btn btn-primary' && userRating > 0) {
+    $gameThumb.setAttribute('data-rated-status', 'true')
+    window.alert('Game has been rated!')
+    postGameRating(gameThumbId, userRating)
   }
 })
