@@ -11,6 +11,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
     .deleteMany({})
     .then(() => games.insertMany([
       {
+        id: 1,
         name: 'The Witcher 3: Wild Hunt',
         genre: 'Action',
         rating: 5,
@@ -37,6 +38,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'player during certain points of the story.'
       },
       {
+        id: 2,
         name: 'Cuphead',
         genre: 'Action',
         rating: 4,
@@ -54,6 +56,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'qualities.'
       },
       {
+        id: 3,
         name: 'Middle-earth: Shadow of Mordor',
         genre: 'Action',
         rating: 5,
@@ -76,6 +79,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'game\'s protagonist and react accordingly.'
       },
       {
+        id: 4,
         name: 'Ryse: Son of Rome',
         genre: 'Action',
         rating: 5,
@@ -99,6 +103,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'in maps that are changing dynamically. '
       },
       {
+        id: 5,
         name: 'Marvel vs. Capcom: Infinite',
         genre: 'Fighting',
         rating: 3,
@@ -122,6 +127,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'and stat boosts depending on the type of stone selected.'
       },
       {
+        id: 6,
         name: 'Tekken 7',
         genre: 'Fighting',
         rating: 4.5,
@@ -143,8 +149,9 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'as the Rage and the Power Crush to increase the characters\' powers.'
       },
       {
+        id: 7,
         name: 'Mortal Kombat X',
-        genre: 'Warner Bros. Interactive Entertainment',
+        genre: 'Fighting',
         rating: 4,
         esrb: 'Mature',
         developer: 'NetherRealm Studios',
@@ -167,8 +174,9 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'explore the areas unlocking a variety of in-game items.'
       },
       {
+        id: 8,
         name: 'Injustice 2',
-        genre: 'Warner Bros. Interactive Entertainment',
+        genre: 'Fighting',
         rating: 4,
         esrb: 'Teen',
         developer: 'NetherRealm Studios',
@@ -193,6 +201,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'to help combat the threats. '
       },
       {
+        id: 9,
         name: 'Battlefield 1',
         genre: 'Shooter',
         rating: 5,
@@ -215,6 +224,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'earth-shattering, dynamic environments and destruction.'
       },
       {
+        id: 10,
         name: 'Overwatch',
         genre: 'Shooter',
         rating: 5,
@@ -241,6 +251,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'additional cosmetic rewards.'
       },
       {
+        id: 11,
         name: 'Call of Duty: Infinite Warfare',
         genre: 'Shooter',
         rating: 3.5,
@@ -266,6 +277,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'player abilities.'
       },
       {
+        id: 12,
         name: 'Tom Clancy\'s Ghost Recon Wildlands',
         genre: 'Shooter',
         rating: 3.5,
