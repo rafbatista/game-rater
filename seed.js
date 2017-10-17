@@ -7,6 +7,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
   }
 
   const games = db.collection('games')
+  const ratedGames = db.collection('rated-games')
   games
     .deleteMany({})
     .then(() => games.insertMany([
@@ -59,7 +60,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         id: 3,
         name: 'Middle-earth: Shadow of Mordor',
         genre: 'Action',
-        rating:0,
+        rating: 0,
         esrb: 'Mature',
         developer: 'Studio MDHR Entertainment',
         publisher: 'Warner Bros. Interactive Entertainment',
@@ -82,7 +83,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         id: 4,
         name: 'Ryse: Son of Rome',
         genre: 'Action',
-        rating:0,
+        rating: 0,
         esrb: 'Mature',
         developer: 'Cyrtek',
         publisher: 'Microsoft Studios',
@@ -106,7 +107,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         id: 5,
         name: 'Marvel vs. Capcom: Infinite',
         genre: 'Fighting',
-        rating:0,
+        rating: 0,
         esrb: 'Teen',
         developer: 'Capcom',
         publisher: 'Capcom',
@@ -152,7 +153,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         id: 7,
         name: 'Mortal Kombat X',
         genre: 'Fighting',
-        rating:0,
+        rating: 0,
         esrb: 'Mature',
         developer: 'NetherRealm Studios',
         publisher: 'Warner Bros. Interactive Entertainment',
@@ -177,7 +178,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         id: 8,
         name: 'Injustice 2',
         genre: 'Fighting',
-        rating:0,
+        rating: 0,
         esrb: 'Teen',
         developer: 'NetherRealm Studios',
         publisher: 'Warner Bros. Interactive Entertainment',
@@ -204,7 +205,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         id: 9,
         name: 'Battlefield 1',
         genre: 'Shooter',
-        rating:0,
+        rating: 0,
         esrb: 'Mature',
         developer: 'EA DICE',
         publisher: 'Electronic Arts',
@@ -227,7 +228,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         id: 10,
         name: 'Overwatch',
         genre: 'Shooter',
-        rating:0,
+        rating: 0,
         esrb: 'Teen',
         developer: 'Blizzard Entertainment',
         publisher: 'Blizzard Entertainment',
@@ -303,6 +304,10 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         'operation to date.'
       }
     ]))
+    .then(() => {
+      ratedGames
+        .deleteMany({})
+    })
     .catch(err => {
       console.error(err)
       process.exit(1)
