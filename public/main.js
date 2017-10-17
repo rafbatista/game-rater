@@ -1,3 +1,4 @@
+/* global $ */
 const $gamesList = document.querySelector('.games-list')
 
 function getGames() {
@@ -11,6 +12,10 @@ function getGames() {
         .forEach($gameThumb => {
           $gamesList.appendChild($gameThumb)
         })
+      $('#input-id').rating()
+      setTimeout(() => {
+        games.forEach(matchUserRatings)
+      }, 0)
     })
 }
 
@@ -96,7 +101,7 @@ function renderGameThumb(game) {
 }
 
 function matchUserRatings(game) {
-  const $gameThumb = document.querySelector('.thumbnail')
+  const $gameThumb = document.getElementById(game.id)
   const userRating = $gameThumb.getAttribute('data-user-rating-value')
   const $ratingStars = $gameThumb.querySelector('.filled-stars')
 
@@ -173,6 +178,6 @@ $gamesList.addEventListener('click', (event) => {
   else if ($rateButton === 'btn btn-primary' && userRating > 0) {
     $gameThumb.setAttribute('data-rated-status', 'true')
     window.alert('Game has been rated!')
-    postGameRating(gameThumbId, userRating)
+    postGameRating(parseInt(gameThumbId, 10), userRating)
   }
 })
