@@ -16,32 +16,6 @@ function getGames() {
 
 getGames()
 
-function matchUserRatings(game) {
-  const $gameThumb = document.querySelector('.thumbnail')
-  const userRating = $gameThumb.getAttribute('data-user-rating-value')
-  const $ratingStars = $gameThumb.querySelector('.filled-stars')
-
-  switch (userRating) {
-    case '0':
-      $ratingStars.style.width = '0%'
-      break
-    case '1':
-      $ratingStars.style.width = '20%'
-      break
-    case '2':
-      $ratingStars.style.width = '40%'
-      break
-    case '3':
-      $ratingStars.style.width = '60%'
-      break
-    case '4':
-      $ratingStars.style.width = '80%'
-      break
-    case '5':
-      $ratingStars.style.width = '100%'
-  }
-}
-
 function renderGameThumb(game) {
 
   const $gameThumb = document.createElement('div')
@@ -63,7 +37,7 @@ function renderGameThumb(game) {
 
   $gameThumb.setAttribute('class', 'col-md-3 thumbnail')
   $gameThumb.setAttribute('id', id)
-  $gameThumb.setAttribute('data-user-rated-value', rating)
+  $gameThumb.setAttribute('data-user-rating-value', rating)
 
   $img.setAttribute('class', 'game-icon')
   $img.setAttribute('src', imgSrc)
@@ -121,8 +95,33 @@ function renderGameThumb(game) {
   return $gameThumb
 }
 
-const postHeaders = new Headers()
+function matchUserRatings(game) {
+  const $gameThumb = document.querySelector('.thumbnail')
+  const userRating = $gameThumb.getAttribute('data-user-rating-value')
+  const $ratingStars = $gameThumb.querySelector('.filled-stars')
 
+  switch (userRating) {
+    case '0':
+      $ratingStars.style.width = '0%'
+      break
+    case '1':
+      $ratingStars.style.width = '20%'
+      break
+    case '2':
+      $ratingStars.style.width = '40%'
+      break
+    case '3':
+      $ratingStars.style.width = '60%'
+      break
+    case '4':
+      $ratingStars.style.width = '80%'
+      break
+    case '5':
+      $ratingStars.style.width = '100%'
+  }
+}
+
+const postHeaders = new Headers()
 postHeaders.append('Content-Type', 'application/json')
 
 function postGameRating(id, rating) {
