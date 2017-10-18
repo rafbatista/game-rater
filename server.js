@@ -18,7 +18,21 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
     games
       .find({})
       .toArray()
-      .then(games => res.json(games))
+      .then(games => {
+        ratedGames
+          .find()
+          .toArray()
+          .then(ratedGames => {
+            for (let i = 0; i < games.length; i++) {
+              for (let j = 0; j < ratedGames.length; j++) {
+                if (games[i].id === ratedGames[j].id) {
+                  games[i].rating = ratedGames[j].rating
+                }
+              }
+            }
+            res.json(games)
+          })
+      })
       .catch(err => {
         console.error(err)
         res.sendStatus(500)
