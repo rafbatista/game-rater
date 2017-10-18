@@ -43,6 +43,7 @@ function renderGameThumb(game) {
   $gameThumb.setAttribute('class', 'col-md-3 thumbnail')
   $gameThumb.setAttribute('id', id)
   $gameThumb.setAttribute('data-user-rating-value', rating)
+  $gameThumb.setAttribute('data-genre', genre)
 
   $img.setAttribute('class', 'game-icon')
   $img.setAttribute('src', imgSrc)
@@ -129,13 +130,14 @@ function matchUserRatings(game) {
 const postHeaders = new Headers()
 postHeaders.append('Content-Type', 'application/json')
 
-function postGameRating(id, rating) {
+function postGameRating(id, rating, genre) {
   const postInit = {
     method: 'POST',
     headers: postHeaders,
     body: JSON.stringify({
       id: id,
-      rating: rating
+      rating: rating,
+      genre: genre
     })
   }
   fetch('http://localhost:3000/games/all', postInit)
@@ -170,7 +172,7 @@ $gamesList.addEventListener('click', (event) => {
     case '100%':
       userRating = 5
   }
-
+  const gameThumbGenre = $gameThumb.getAttribute('data-genre')
   const $rateButton = event.target.getAttribute('class')
   if ($rateButton === 'btn btn-primary' && userRating === 0) {
     window.alert('Please choose a minimum of 1-star before rating a game.')
@@ -178,6 +180,6 @@ $gamesList.addEventListener('click', (event) => {
   else if ($rateButton === 'btn btn-primary' && userRating > 0) {
     $gameThumb.setAttribute('data-rated-status', 'true')
     window.alert('Game has been rated!')
-    postGameRating(parseInt(gameThumbId, 10), userRating)
+    postGameRating(parseInt(gameThumbId, 10), userRating, gameThumbGenre)
   }
 })
