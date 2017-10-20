@@ -11,7 +11,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
     console.error(err)
     process.exit(1)
   }
-
+  app.use(bodyParser.json())
   const games = db.collection('games')
 
   app.get('/games/all', (req, res) => {
@@ -40,7 +40,6 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
   })
 
   app.get('/games/suggested', (req, res) => {
-    const gameSuggestions = []
     games
       .find({})
       .toArray()
@@ -49,49 +48,7 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
           .find()
           .toArray()
           .then(ratedGames => {
-            for (let i = 0; i < games.length; i++) {
-              for (let j = 0; j < ratedGames.length; j++) {
-                if (games[i].id === ratedGames[j].id) {
-                  games[i].rating = ratedGames[j].rating
-                }
-              }
-              if (games[i].rating > 0) {
-                games.splice(i, 1)
-              }
-              if (gameSuggestions.length > 3) {
-                return
-              }
-              const stats = getGameStats(ratedGames)
-              if (stats.avgRatings.action >= 3 && games[i].genre === 'action' && stats.ratingCount.action === 2) {
-                gameSuggestions.push(games[i])
-                games.splice(i, 1)
-              }
-              if (stats.avgRatings.fighting >= 3 && games[i].genre === 'fighting' && stats.ratingCount.fighting === 2) {
-                gameSuggestions.push(games[i])
-                games.splice(i, 1)
-              }
-              if (stats.avgRatings.shooter >= 3 && games[i].genre === 'shooter' && stats.ratingCount.shooter === 2) {
-                gameSuggestions.push(games[i])
-                games.splice(i, 1)
-              }
-              if (stats.avgRatings.action < 3 && games[i].genre === 'action' && stats.ratingCount.action === 2) {
-                games.splice(i, 1)
-              }
-              if (stats.avgRatings.fighting < 3 && games[i].genre === 'fighting' && stats.ratingCount.fighting === 2) {
-                games.splice(i, 1)
-              }
-              if (stats.avgRatings.shooter < 3 && games[i].genre === 'shooter' && stats.ratingCount.shooter === 2) {
-                games.splice(i, 1)
-              }
-            }
-            function getRandomIntInclusive(min, max) {
-              min = Math.ceil(min)
-              max = Math.floor(max)
-              return Math.floor(Math.random() * (max - min + 1)) + min
-            }
-            if (gameSuggestions.length < 3) {
-              gameSuggestions.push(games[getRandomIntInclusive(0, games.length)])
-            }
+            const gameSuggestions = getSuggestions(games, ratedGames)
             res.json(gameSuggestions)
             gameSuggestions.splice(0)
           })
@@ -101,8 +58,6 @@ MongoClient.connect('mongodb://localhost/game-rater', (err, db) => {
         res.sendStatus(500)
       })
   })
-
-  app.use(bodyParser.json())
 
   const ratedGames = db.collection('rated-games')
 
@@ -129,23 +84,85 @@ function getAverageRating(ratings, genre) {
 }
 
 function getGenreCount(ratings, genre) {
-  const genreCount = {}
   const games = ratings.filter(game => game.genre === genre)
-  genreCount[genre] = games.length
-  return genreCount
+  return games.length
 }
 
 function getGameStats(ratedGames) {
   return {
     avgRatings: {
-      action: getAverageRating(ratedGames, 'action'),
-      fighting: getAverageRating(ratedGames, 'fighting'),
-      shooter: getAverageRating(ratedGames, 'shooter')
+      action: getAverageRating(ratedGames, 'Action'),
+      fighting: getAverageRating(ratedGames, 'Fighting'),
+      shooter: getAverageRating(ratedGames, 'Shooter')
     },
     ratingCount: {
-      action: getGenreCount(ratedGames, 'action'),
-      fighting: getGenreCount(ratedGames, 'fighting'),
-      shooter: getGenreCount(ratedGames, 'shooter')
+      action: getGenreCount(ratedGames, 'Action'),
+      fighting: getGenreCount(ratedGames, 'Fighting'),
+      shooter: getGenreCount(ratedGames, 'Shooter')
     }
   }
+}
+
+function randomNumber(length) {
+  return Math.floor(Math.random() * length)
+}
+
+function assignRatings(games, ratedGames) {
+  for (let i = 0; i < games.length; i++) {
+    for (let j = 0; j < ratedGames.length; j++) {
+      if (games[i].id === ratedGames[j].id) {
+        games[i].rating = ratedGames[j].rating
+      }
+    }
+  }
+}
+
+function getSuggestionsByGenre(stats, games) {
+  const gameSuggestions = []
+  for (let i = 0; i < games.length; i++) {
+    if (stats.avgRatings.action >= 3 && games[i].genre.toLowerCase() === 'action' && stats.ratingCount.action === 2 && games[i].rating === 0) {
+      gameSuggestions.push(games[i])
+    }
+    if (stats.avgRatings.fighting >= 3 && games[i].genre.toLowerCase() === 'fighting' && stats.ratingCount.fighting === 2 && games[i].rating === 0) {
+      gameSuggestions.push(games[i])
+    }
+    if (stats.avgRatings.shooter >= 3 && games[i].genre.toLowerCase() === 'shooter' && stats.ratingCount.shooter === 2 && games[i].rating === 0) {
+      gameSuggestions.push(games[i])
+    }
+  }
+  return gameSuggestions
+}
+
+function getUnsuggestedGames(games, gameSuggestions) {
+  const unratedGames = []
+  const unsuggestedGames = []
+  for (let i = 0; i < games.length; i++) {
+    if (games[i].rating === 0) {
+      unratedGames.push(games[i])
+    }
+  }
+  for (let i = 0; i < unratedGames.length; i++) {
+    let isSuggested = false
+    for (var j = 0; j < gameSuggestions.length; j++) {
+      if (unratedGames[i].id === gameSuggestions[j].id) {
+        isSuggested = true
+        break
+      }
+    }
+    if (isSuggested === false) {
+      unsuggestedGames.push(unratedGames[i])
+    }
+  }
+  return unsuggestedGames
+}
+
+function getSuggestions(games, ratedGames) {
+  const stats = getGameStats(ratedGames)
+  assignRatings(games, ratedGames)
+  const gameSuggestions = getSuggestionsByGenre(stats, games)
+  const unsuggestedGames = getUnsuggestedGames(games, gameSuggestions)
+  if (gameSuggestions.length < 3) {
+    gameSuggestions.push(unsuggestedGames[randomNumber(unsuggestedGames.length)])
+  }
+  return gameSuggestions
 }
